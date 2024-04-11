@@ -10,7 +10,7 @@ public class RepeatBackground : MonoBehaviour
     void Start()
     {
         startPos = transform.position;
-        repeatWidth = startPos.x - 3.5f;
+        repeatWidth = startPos.x - 1.5f;
     }
 
     // Update is called once per frame
