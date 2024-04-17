@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Bird: MonoBehaviour
 {
+    // True OR False value to check if bird is alive or not
+    public bool isAlive;
+
     int score = 0;
     public Text scoreUI;
 
@@ -13,12 +16,15 @@ public class Bird: MonoBehaviour
     void Start()
     {
         bird = GetComponent<Rigidbody2D>();
+        // Set the alive to true
+        isAlive = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space)){
+        if(Input.GetKeyDown(KeyCode.Space) && isAlive)
+        {
             bird.AddForce(new Vector2(0,1) * 200);
         }
         
@@ -31,5 +37,10 @@ public class Bird: MonoBehaviour
             score = score + 1;
             scoreUI.text = score.ToString();
         }
+    }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        // Set alive to false on Collision
+        isAlive = false;
     }
 }
