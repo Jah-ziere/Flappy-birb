@@ -1,7 +1,9 @@
+using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Bird: MonoBehaviour
 {
@@ -12,6 +14,10 @@ public class Bird: MonoBehaviour
     public Text scoreUI;
 
     Rigidbody2D bird;
+
+    public TextMeshProUGUI gameOverText;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +32,10 @@ public class Bird: MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && isAlive)
         {
             bird.AddForce(new Vector2(0,1) * 200);
+        }
+        if(isAlive == false)
+        {
+            GameOver();
         }
         
     }
@@ -43,4 +53,17 @@ public class Bird: MonoBehaviour
         // Set alive to false on Collision
         isAlive = false;
     }
+
+    public void GameOver() 
+    {
+        gameOverText.gameObject.SetActive(true); 
+    }
+
+        public void RestartGame()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+        }
+    
+
+    
 }
